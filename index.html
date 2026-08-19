@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sokhna Bintou — Joyeux Anniversaire</title>
+<title>Joyeux Anniversaire Sokhna Bintou</title>
 
 <style>
 *{
@@ -17,49 +17,36 @@ html,body{
     height:100%;
     overflow:hidden;
     background:#020204;
-    font-family:Arial,Helvetica,sans-serif;
     color:white;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 :root{
-    --red:#ff163d;
-    --red2:#ff3d4f;
+    --red:#ff173d;
     --orange:#ff9d3d;
     --gold:#ffd166;
     --pink:#ff477d;
 }
 
-
-/* =========================================================
-   ÉCRAN MOT DE PASSE
-========================================================= */
+/* =====================================================
+   MOT DE PASSE
+===================================================== */
 
 #passwordScreen{
     position:fixed;
     inset:0;
     z-index:9999;
     overflow:hidden;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    transition:
-        opacity 1s ease,
-        visibility 1s ease;
+    transition:opacity .8s ease,visibility .8s ease;
 }
 
 #passwordScreen.hide{
     opacity:0;
     visibility:hidden;
 }
-
-
-/* PHOTO QUI COUVRE TOUT */
 
 .passwordBackground{
     position:absolute;
@@ -68,40 +55,31 @@ html,body{
     background-image:
         linear-gradient(
             90deg,
-            rgba(0,0,0,.45),
+            rgba(0,0,0,.48),
             rgba(0,0,0,.08),
-            rgba(0,0,0,.35)
+            rgba(0,0,0,.4)
         ),
         url("https://res.cloudinary.com/qx72zpuf/image/upload/v1786873409/vlcsnap-2025-09-23-01h57m08s948.png");
 
     background-size:cover;
-    background-position:center center;
+    background-position:center;
     background-repeat:no-repeat;
 
-    filter:
-        brightness(.78)
-        saturate(1.08);
+    filter:brightness(.78) saturate(1.08);
 }
-
-
-/* VOILE */
 
 .passwordBackground::after{
     content:"";
     position:absolute;
     inset:0;
-
     background:
         radial-gradient(
             circle at 30% 50%,
             transparent 0%,
-            rgba(0,0,0,.1) 35%,
-            rgba(0,0,0,.7) 100%
+            rgba(0,0,0,.12) 35%,
+            rgba(0,0,0,.72) 100%
         );
 }
-
-
-/* RAYONS */
 
 .passwordRays{
     position:absolute;
@@ -112,13 +90,12 @@ html,body{
             from 0deg,
             transparent 0deg,
             transparent 6deg,
-            rgba(255,20,50,.13) 6.5deg,
+            rgba(255,20,50,.12) 6.5deg,
             transparent 7deg,
             transparent 13deg
         );
 
-    animation:
-        rotateRays 25s linear infinite;
+    animation:rotateRays 22s linear infinite;
 }
 
 @keyframes rotateRays{
@@ -127,58 +104,38 @@ html,body{
     }
 }
 
-
-/* CONTENU MOT DE PASSE */
-
 .passwordContent{
     position:absolute;
     z-index:10;
-
     left:8%;
     top:50%;
-
     transform:translateY(-50%);
-
     width:min(390px,38vw);
-
     text-align:center;
 }
 
-
-/* PETIT ÉCLAIR */
-
 .passwordBolt{
     font-size:42px;
-
     color:#ffb348;
-
     text-shadow:
         0 0 8px white,
         0 0 20px #ff452f,
         0 0 45px #ff173d;
 
-    animation:
-        boltPulse .7s infinite alternate;
+    animation:boltPulse .55s infinite alternate;
 }
 
 @keyframes boltPulse{
     to{
-        transform:scale(1.15);
-        filter:brightness(1.4);
+        transform:scale(1.12);
     }
 }
 
-
 .passwordContent h1{
     margin-top:10px;
-
-    font-size:
-        clamp(25px,4vw,48px);
-
+    font-size:clamp(25px,4vw,48px);
     line-height:.95;
-
     font-style:italic;
-
     text-transform:uppercase;
 
     text-shadow:
@@ -188,13 +145,9 @@ html,body{
 
 .passwordContent h1 span{
     display:block;
-
-    color:#ffb34d;
-
     margin-top:6px;
-
-    font-size:
-        clamp(32px,5vw,58px);
+    color:#ffb34d;
+    font-size:clamp(32px,5vw,58px);
 
     text-shadow:
         0 0 10px #ff7c35,
@@ -203,40 +156,25 @@ html,body{
 
 .passwordContent p{
     margin-top:16px;
-
     font-size:10px;
-
     letter-spacing:3px;
-
     font-weight:bold;
 }
 
-
 .passwordBox{
     margin:15px auto 0;
-
     width:150px;
 }
 
 #password{
     width:100%;
-
     height:39px;
-
-    border:
-        1px solid #ff354c;
-
+    border:1px solid #ff354c;
     border-radius:7px;
-
-    background:
-        rgba(0,0,0,.5);
-
+    background:rgba(0,0,0,.5);
     outline:none;
-
     color:white;
-
     text-align:center;
-
     letter-spacing:5px;
 
     box-shadow:
@@ -247,17 +185,12 @@ html,body{
     color:#ddd;
 }
 
-
 #enter{
     margin-top:9px;
-
     width:42px;
     height:42px;
-
     border-radius:50%;
-
-    border:
-        1px solid rgba(255,255,255,.35);
+    border:1px solid rgba(255,255,255,.35);
 
     background:
         linear-gradient(
@@ -267,40 +200,31 @@ html,body{
         );
 
     color:white;
-
     cursor:pointer;
-
     font-size:18px;
 
     box-shadow:
         0 0 15px #ff3c32,
         0 0 30px rgba(255,30,60,.5);
 
-    transition:.3s;
+    transition:.2s;
 }
 
 #enter:hover{
     transform:scale(1.12);
-
-    box-shadow:
-        0 0 25px #ff7040,
-        0 0 50px #ff173d;
 }
 
 #error{
     min-height:18px;
-
     margin-top:8px;
-
     color:#ff8794;
-
     font-size:10px;
 }
 
 
-/* =========================================================
+/* =====================================================
    CHARGEMENT
-========================================================= */
+===================================================== */
 
 #loading{
     position:fixed;
@@ -308,7 +232,6 @@ html,body{
     z-index:10000;
 
     display:none;
-
     align-items:center;
     justify-content:center;
     flex-direction:column;
@@ -322,7 +245,6 @@ html,body{
 
 .loadingBolt{
     font-size:100px;
-
     color:#ffb64b;
 
     text-shadow:
@@ -330,40 +252,30 @@ html,body{
         0 0 35px #ff4b30,
         0 0 70px #ff173d;
 
-    animation:
-        loadBolt .5s infinite alternate;
+    animation:loadBolt .4s infinite alternate;
 }
 
 @keyframes loadBolt{
     to{
-        transform:scale(1.12);
+        transform:scale(1.1);
     }
 }
 
 .loadingText{
     margin-top:15px;
-
     font-size:11px;
-
     letter-spacing:3px;
-
-    font-weight:bold;
 }
 
 .loadingBar{
     margin-top:20px;
-
     width:280px;
     height:3px;
-
     background:#251016;
-
-    overflow:hidden;
 }
 
 .loadingBar span{
     display:block;
-
     width:0;
     height:100%;
 
@@ -375,11 +287,7 @@ html,body{
             white
         );
 
-    box-shadow:
-        0 0 12px #ff3048;
-
-    animation:
-        loading 2.4s ease forwards;
+    animation:loading 1.7s ease forwards;
 }
 
 @keyframes loading{
@@ -389,33 +297,26 @@ html,body{
 }
 
 
-/* =========================================================
+/* =====================================================
    EXPÉRIENCE
-========================================================= */
+===================================================== */
 
 #experience{
     position:fixed;
     inset:0;
-
     overflow:hidden;
-
     background:#020204;
 
     opacity:0;
     visibility:hidden;
 
-    transition:opacity 1s ease;
+    transition:opacity .7s ease;
 }
 
 #experience.active{
     opacity:1;
     visibility:visible;
 }
-
-
-/* =========================================================
-   FOND VITESSE
-========================================================= */
 
 .speedBackground{
     position:absolute;
@@ -431,8 +332,7 @@ html,body{
             transparent 12deg
         );
 
-    animation:
-        speedRotate 20s linear infinite;
+    animation:speedRotate 14s linear infinite;
 }
 
 @keyframes speedRotate{
@@ -440,9 +340,6 @@ html,body{
         transform:rotate(360deg);
     }
 }
-
-
-/* CENTRE */
 
 .centerLight{
     position:absolute;
@@ -460,31 +357,18 @@ html,body{
     background:
         radial-gradient(
             circle,
-            rgba(255,60,35,.28),
+            rgba(255,60,35,.3),
             rgba(255,20,50,.1) 40%,
             transparent 70%
         );
 
     filter:blur(15px);
-
-    animation:
-        centerGlow 2.5s infinite alternate;
-}
-
-@keyframes centerGlow{
-    to{
-        transform:
-            translate(-50%,-50%)
-            scale(1.2);
-
-        opacity:.65;
-    }
 }
 
 
-/* =========================================================
-   LIGNES RAPIDES
-========================================================= */
+/* =====================================================
+   RAYONS
+===================================================== */
 
 .ray{
     position:absolute;
@@ -504,14 +388,15 @@ html,body{
             transparent
         );
 
-    box-shadow:
-        0 0 10px #ff263d;
+    box-shadow:0 0 10px #ff263d;
 
     transform:rotate(var(--rotation));
 
     animation:
-        rayMove var(--duration)
-        linear var(--delay)
+        rayMove
+        var(--duration)
+        linear
+        var(--delay)
         infinite;
 
     opacity:0;
@@ -532,10 +417,6 @@ html,body{
         opacity:1;
     }
 
-    80%{
-        opacity:.7;
-    }
-
     100%{
         transform:
             translateX(160vw)
@@ -547,9 +428,9 @@ html,body{
 }
 
 
-/* =========================================================
+/* =====================================================
    INTRO
-========================================================= */
+===================================================== */
 
 #intro{
     position:absolute;
@@ -564,32 +445,27 @@ html,body{
     text-align:center;
 
     transition:
-        opacity .8s ease,
-        transform .8s ease;
+        opacity .6s ease,
+        transform .6s ease;
 }
 
 #intro.hide{
     opacity:0;
-    transform:scale(1.4);
-    filter:blur(10px);
+    transform:scale(1.35);
+    filter:blur(8px);
 }
 
 .introTop{
     font-size:11px;
-
     letter-spacing:4px;
-
     font-weight:bold;
 }
 
 .introName{
     margin-top:14px;
 
-    font-size:
-        clamp(40px,9vw,105px);
-
+    font-size:clamp(40px,9vw,105px);
     font-weight:900;
-
     font-style:italic;
 
     background:
@@ -606,8 +482,7 @@ html,body{
     -webkit-background-clip:text;
     color:transparent;
 
-    animation:
-        gradientMove 3s linear infinite;
+    animation:gradientMove 2s linear infinite;
 }
 
 @keyframes gradientMove{
@@ -618,18 +493,13 @@ html,body{
 
 .introBottom{
     margin-top:15px;
-
-    font-size:
-        clamp(16px,3vw,30px);
-
+    font-size:clamp(16px,3vw,30px);
     font-weight:bold;
 }
 
 .introBolt{
     margin-top:20px;
-
     font-size:65px;
-
     color:#ffb34c;
 
     text-shadow:
@@ -637,20 +507,19 @@ html,body{
         0 0 30px #ff4c2e,
         0 0 60px #ff173d;
 
-    animation:
-        introBolt .7s infinite alternate;
+    animation:introBolt .5s infinite alternate;
 }
 
 @keyframes introBolt{
     to{
-        transform:scale(1.15);
+        transform:scale(1.12);
     }
 }
 
 
-/* =========================================================
+/* =====================================================
    GALERIE
-========================================================= */
+===================================================== */
 
 #gallery{
     position:absolute;
@@ -666,28 +535,19 @@ html,body{
     visibility:visible;
 }
 
-
-/* TITRE */
-
 .galleryTitle{
     position:absolute;
-
     top:27px;
     left:50%;
-
     transform:translateX(-50%);
 
     z-index:1000;
 
     white-space:nowrap;
 
-    font-size:
-        clamp(13px,2.4vw,24px);
-
+    font-size:clamp(13px,2.4vw,24px);
     font-weight:bold;
-
     font-style:italic;
-
     letter-spacing:2px;
 
     text-shadow:
@@ -695,42 +555,31 @@ html,body{
         0 0 20px #ff3b32;
 }
 
-
-/* SOUS-TITRE */
-
 .gallerySub{
     position:absolute;
 
     bottom:48px;
     left:50%;
-
     transform:translateX(-50%);
 
     z-index:1000;
 
     font-size:9px;
-
     letter-spacing:3px;
-
-    color:#ddd;
 }
-
-
-/* =========================================================
-   CARROUSEL
-========================================================= */
 
 .carousel{
     position:absolute;
     inset:0;
 
     perspective:1300px;
-
     transform-style:preserve-3d;
 }
 
 
-/* CARTE */
+/* =====================================================
+   MÉDIAS
+===================================================== */
 
 .media{
     position:absolute;
@@ -738,28 +587,22 @@ html,body{
     left:50%;
     top:50%;
 
-    width:
-        clamp(260px,42vw,620px);
-
-    height:
-        clamp(175px,47vh,430px);
+    width:clamp(260px,42vw,620px);
+    height:clamp(175px,47vh,430px);
 
     transform-style:preserve-3d;
 
     transition:
-        transform .75s
-        cubic-bezier(.16,.8,.18,1),
-        opacity .55s ease,
-        filter .55s ease;
+        transform .38s cubic-bezier(.1,.8,.15,1),
+        opacity .3s ease,
+        filter .3s ease;
 
     border-radius:17px;
-
     overflow:hidden;
 
     background:#020204;
 
-    border:
-        2px solid #ff344a;
+    border:2px solid #ff344a;
 
     box-shadow:
         0 0 8px white,
@@ -780,25 +623,21 @@ html,body{
     z-index:var(--zindex);
 }
 
-
-/* média */
-
 .media img,
 .media video{
     display:block;
-
     width:100%;
     height:100%;
 
+    /*
+       IMPORTANT :
+       les images verticales ne sont pas coupées
+    */
     object-fit:contain;
-
     object-position:center;
 
     background:#010103;
 }
-
-
-/* REFLET */
 
 .media::after{
     content:"";
@@ -821,23 +660,19 @@ html,body{
 
     transform:rotate(15deg);
 
-    animation:
-        shine 2.8s infinite;
+    animation:shine 1.8s infinite;
 }
 
 @keyframes shine{
 
-    0%,30%{
+    0%,25%{
         left:-150%;
     }
 
-    65%,100%{
+    60%,100%{
         left:150%;
     }
 }
-
-
-/* CADRE LUMINEUX */
 
 .media::before{
     content:"";
@@ -868,12 +703,9 @@ html,body{
 
     background-size:300%;
 
-    animation:
-        borderGradient 1.7s linear infinite;
+    animation:borderGradient 1.2s linear infinite;
 
     z-index:5;
-
-    pointer-events:none;
 }
 
 @keyframes borderGradient{
@@ -883,11 +715,9 @@ html,body{
 }
 
 
-/* =========================================================
-   POSITIONS DU CARROUSEL
-========================================================= */
-
-/* centre */
+/* =====================================================
+   POSITIONS
+===================================================== */
 
 .media.center{
     --x:0px;
@@ -899,9 +729,6 @@ html,body{
     --zindex:50;
 }
 
-
-/* gauche proche */
-
 .media.left1{
     --x:-31vw;
     --z:-20px;
@@ -911,9 +738,6 @@ html,body{
     --blur:1px;
     --zindex:35;
 }
-
-
-/* droite proche */
 
 .media.right1{
     --x:31vw;
@@ -925,9 +749,6 @@ html,body{
     --zindex:35;
 }
 
-
-/* gauche très loin */
-
 .media.left2{
     --x:-62vw;
     --z:-400px;
@@ -937,9 +758,6 @@ html,body{
     --blur:5px;
     --zindex:15;
 }
-
-
-/* droite très loin */
 
 .media.right2{
     --x:62vw;
@@ -952,15 +770,13 @@ html,body{
 }
 
 
-/* =========================================================
+/* =====================================================
    FLÈCHES
-========================================================= */
+===================================================== */
 
 .arrow{
     position:absolute;
-
     top:50%;
-
     transform:translateY(-50%);
 
     z-index:2000;
@@ -970,12 +786,7 @@ html,body{
 
     border:0;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,30,50,.08)
-        );
+    background:transparent;
 
     color:white;
 
@@ -986,16 +797,11 @@ html,body{
     text-shadow:
         0 0 10px #ff3148;
 
-    transition:.25s;
+    transition:.2s;
 }
 
 .arrow:hover{
     color:#ffb04b;
-
-    text-shadow:
-        0 0 10px white,
-        0 0 25px #ff334b;
-
     transform:
         translateY(-50%)
         scale(1.15);
@@ -1010,9 +816,9 @@ html,body{
 }
 
 
-/* =========================================================
-   INDICATEURS
-========================================================= */
+/* =====================================================
+   POINTS
+===================================================== */
 
 .dots{
     position:absolute;
@@ -1025,7 +831,6 @@ html,body{
     z-index:2000;
 
     display:flex;
-
     gap:12px;
 }
 
@@ -1037,9 +842,7 @@ html,body{
 
     background:#777;
 
-    box-shadow:0 0 5px #777;
-
-    transition:.3s;
+    transition:.25s;
 }
 
 .dot.active{
@@ -1053,9 +856,9 @@ html,body{
 }
 
 
-/* =========================================================
-   BOUTON MUSIQUE
-========================================================= */
+/* =====================================================
+   MUSIQUE
+===================================================== */
 
 .music{
     position:absolute;
@@ -1080,16 +883,14 @@ html,body{
 
     cursor:pointer;
 
-    backdrop-filter:blur(8px);
-
     box-shadow:
         0 0 15px rgba(255,30,50,.3);
 }
 
 
-/* =========================================================
+/* =====================================================
    COMPTEUR
-========================================================= */
+===================================================== */
 
 .counter{
     position:absolute;
@@ -1100,14 +901,13 @@ html,body{
     z-index:2000;
 
     font-size:9px;
-
     letter-spacing:3px;
 }
 
 
-/* =========================================================
-   FLASH DE TRANSITION
-========================================================= */
+/* =====================================================
+   FLASH
+===================================================== */
 
 .flash{
     position:absolute;
@@ -1123,8 +923,7 @@ html,body{
 }
 
 .flash.active{
-    animation:
-        flashEffect .42s ease;
+    animation:flashEffect .22s ease;
 }
 
 @keyframes flashEffect{
@@ -1133,8 +932,8 @@ html,body{
         opacity:0;
     }
 
-    15%{
-        opacity:.9;
+    20%{
+        opacity:.85;
     }
 
     100%{
@@ -1143,9 +942,9 @@ html,body{
 }
 
 
-/* =========================================================
-   CARTES TEXTE FINALES
-========================================================= */
+/* =====================================================
+   CARTES TEXTE
+===================================================== */
 
 .textCard{
     position:absolute;
@@ -1153,20 +952,14 @@ html,body{
     left:50%;
     top:50%;
 
-    width:
-        clamp(280px,43vw,610px);
-
-    min-height:
-        clamp(190px,40vh,360px);
+    width:clamp(280px,43vw,610px);
+    min-height:clamp(190px,40vh,360px);
 
     padding:35px;
 
-    transform:
-        translate(-50%,-50%);
+    transform:translate(-50%,-50%);
 
-    border:
-        2px solid #ff3850;
-
+    border:2px solid #ff3850;
     border-radius:18px;
 
     background:
@@ -1188,69 +981,6 @@ html,body{
     justify-content:center;
 
     overflow:hidden;
-
-    animation:
-        textAppear .9s
-        cubic-bezier(.12,.8,.18,1)
-        forwards;
-}
-
-@keyframes textAppear{
-
-    from{
-        opacity:0;
-
-        transform:
-            translate(-50%,-50%)
-            scale(.25)
-            rotateY(70deg);
-
-        filter:blur(15px);
-    }
-
-    to{
-        opacity:1;
-
-        transform:
-            translate(-50%,-50%)
-            scale(1)
-            rotateY(0);
-
-        filter:blur(0);
-    }
-}
-
-.textCard::before{
-    content:"";
-
-    position:absolute;
-    inset:-3px;
-
-    border-radius:20px;
-
-    border:2px solid transparent;
-
-    background:
-        linear-gradient(
-            120deg,
-            #ff173d,
-            #ffbf5b,
-            #ff4275,
-            #ff173d
-        ) border-box;
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-
-    -webkit-mask-composite:xor;
-
-    mask-composite:exclude;
-
-    background-size:300%;
-
-    animation:
-        borderGradient 2s linear infinite;
 }
 
 .textContent{
@@ -1265,8 +995,7 @@ html,body{
 .textContent h2{
     margin-top:10px;
 
-    font-size:
-        clamp(22px,4vw,43px);
+    font-size:clamp(22px,4vw,43px);
 
     font-style:italic;
 
@@ -1285,8 +1014,7 @@ html,body{
 
     color:transparent;
 
-    animation:
-        gradientMove 3s linear infinite;
+    animation:gradientMove 2s linear infinite;
 }
 
 .textContent p{
@@ -1294,23 +1022,19 @@ html,body{
 
     line-height:1.7;
 
-    font-size:
-        clamp(11px,1.7vw,17px);
+    font-size:clamp(11px,1.7vw,17px);
 
     color:#eee;
 }
 
 .textContent strong{
     color:#ff6682;
-
-    text-shadow:
-        0 0 10px #ff244b;
 }
 
 
-/* =========================================================
+/* =====================================================
    PAGE FINALE
-========================================================= */
+===================================================== */
 
 #final{
     position:absolute;
@@ -1350,9 +1074,7 @@ html,body{
 
 #final.active{
     display:flex;
-
-    animation:
-        finalAppear 1.2s ease forwards;
+    animation:finalAppear .8s ease forwards;
 }
 
 @keyframes finalAppear{
@@ -1360,7 +1082,7 @@ html,body{
     from{
         opacity:0;
         transform:scale(1.08);
-        filter:blur(15px);
+        filter:blur(12px);
     }
 
     to{
@@ -1384,8 +1106,7 @@ html,body{
             transparent 12deg
         );
 
-    animation:
-        speedRotate 25s linear infinite;
+    animation:speedRotate 15s linear infinite;
 }
 
 .finalSmall{
@@ -1393,7 +1114,6 @@ html,body{
     z-index:5;
 
     font-size:11px;
-
     letter-spacing:4px;
 }
 
@@ -1408,10 +1128,7 @@ html,body{
         "Segoe Script",
         cursive;
 
-    font-style:italic;
-
-    font-size:
-        clamp(55px,12vw,140px);
+    font-size:clamp(55px,12vw,140px);
 
     line-height:.8;
 
@@ -1435,8 +1152,7 @@ html,body{
         drop-shadow(0 0 8px #ff304c)
         drop-shadow(0 0 25px #ff173d);
 
-    animation:
-        gradientMove 4s linear infinite;
+    animation:gradientMove 2.5s linear infinite;
 }
 
 .finalName{
@@ -1466,8 +1182,7 @@ html,body{
 
     margin-top:18px;
 
-    font-size:
-        clamp(11px,1.8vw,17px);
+    font-size:clamp(11px,1.8vw,17px);
 
     line-height:1.8;
 }
@@ -1484,8 +1199,7 @@ html,body{
 
     font-size:30px;
 
-    animation:
-        floating 3s ease-in-out infinite;
+    animation:floating 2s ease-in-out infinite;
 }
 
 @keyframes floating{
@@ -1496,6 +1210,7 @@ html,body{
 
 .replay{
     position:absolute;
+
     z-index:10;
 
     bottom:18px;
@@ -1523,25 +1238,17 @@ html,body{
 }
 
 
-/* =========================================================
+/* =====================================================
    RESPONSIVE
-========================================================= */
+===================================================== */
 
 @media(max-width:700px){
 
     .passwordContent{
         left:50%;
         top:57%;
-
-        transform:
-            translate(-50%,-50%);
-
+        transform:translate(-50%,-50%);
         width:80vw;
-    }
-
-    .passwordBackground{
-        background-position:
-            center center;
     }
 
     .media{
@@ -1586,16 +1293,7 @@ html,body{
     .arrow.right{
         right:0;
     }
-
-    .gallerySub{
-        bottom:47px;
-    }
-
-    .counter{
-        bottom:20px;
-    }
 }
-
 </style>
 </head>
 
@@ -1615,7 +1313,9 @@ html,body{
 
     <div class="passwordContent">
 
-        <div class="passwordBolt">⚡</div>
+        <div class="passwordBolt">
+            ⚡
+        </div>
 
         <h1>
             QUELQUE CHOSE
@@ -1657,7 +1357,9 @@ html,body{
 
 <section id="loading">
 
-    <div class="loadingBolt">⚡</div>
+    <div class="loadingBolt">
+        ⚡
+    </div>
 
     <div class="loadingText">
         CHARGEMENT DE TON EXPÉRIENCE...
@@ -1697,15 +1399,13 @@ html,body{
     <div class="centerLight"></div>
 
 
-    <!-- RAYONS -->
-
     <div class="ray"
         style="
         --width:500px;
         --left:-10%;
         --top:20%;
         --rotation:12deg;
-        --duration:2s;
+        --duration:1.3s;
         --delay:-.4s;">
     </div>
 
@@ -1715,7 +1415,7 @@ html,body{
         --left:20%;
         --top:35%;
         --rotation:-9deg;
-        --duration:2.4s;
+        --duration:1.5s;
         --delay:-1.2s;">
     </div>
 
@@ -1725,7 +1425,7 @@ html,body{
         --left:30%;
         --top:50%;
         --rotation:6deg;
-        --duration:2.1s;
+        --duration:1.4s;
         --delay:-1.7s;">
     </div>
 
@@ -1735,24 +1435,12 @@ html,body{
         --left:40%;
         --top:72%;
         --rotation:-7deg;
-        --duration:2.7s;
+        --duration:1.6s;
         --delay:-2s;">
     </div>
 
-    <div class="ray"
-        style="
-        --width:550px;
-        --left:0;
-        --top:87%;
-        --rotation:5deg;
-        --duration:2.2s;
-        --delay:-.8s;">
-    </div>
 
-
-    <!-- =================================================
-         INTRO
-    ================================================== -->
+    <!-- INTRO -->
 
     <div id="intro">
 
@@ -1775,9 +1463,7 @@ html,body{
     </div>
 
 
-    <!-- =================================================
-         GALERIE
-    ================================================== -->
+    <!-- GALERIE -->
 
     <div id="gallery">
 
@@ -1789,8 +1475,9 @@ html,body{
             UNE PETITE COLLECTION DE BEAUX SOUVENIRS
         </div>
 
-        <div id="carousel"
-             class="carousel">
+        <div
+            id="carousel"
+            class="carousel">
         </div>
 
         <button
@@ -1825,17 +1512,13 @@ html,body{
     </div>
 
 
-    <!-- FLASH -->
-
     <div
         id="flash"
         class="flash">
     </div>
 
 
-    <!-- =================================================
-         FINAL
-    ================================================== -->
+    <!-- FINALE -->
 
     <div id="final">
 
@@ -1886,9 +1569,9 @@ html,body{
 
 <script>
 
-/* =========================================================
+/* =====================================================
    ÉLÉMENTS
-========================================================= */
+===================================================== */
 
 const passwordScreen =
     document.getElementById("passwordScreen");
@@ -1942,177 +1625,12 @@ const flash =
     document.getElementById("flash");
 
 
-/* =========================================================
+/* =====================================================
    MOT DE PASSE
-========================================================= */
+===================================================== */
 
 const PASSWORD = "mara";
 
-
-/* =========================================================
-   TES 26 MÉDIAS
-========================================================= */
-
-const medias = [
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/WhatsApp_Image_2026-08-16_at_02.25.01_1.jpg"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873461/WhatsApp_Video_2026-08-16_at_02.31.00.mp4"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873450/Photo_Collage_Maker_2025_09_24_12_01_26.png"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873445/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_01.11.48_b471640a.mp4"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873411/WhatsApp_Image_2026-08-16_at_02.25.02_1.jpg"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.02.jpg"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.01.jpg"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.01_2.jpg"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873444/WhatsApp_Video_2026-08-16_at_02.25.03.mp4"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873442/WhatsApp_Video_2026-08-16_at_02.25.03_2.mp4"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873437/WhatsApp_Video_2026-08-16_at_02.25.01.mp4"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873437/WhatsApp_Video_2026-08-16_at_02.25.03_1.mp4"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873436/WhatsApp_Video_2026-08-16_at_02.25.02.mp4"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873424/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_00.54.47_d9ad782b.mp4"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873422/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_01.10.56_8bb80754.mp4"
-    },
-
-    {
-        type:"video",
-        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873419/WhatsApp_Video_2026-08-16_at_02.25.00.mp4"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/WhatsApp_Image_2026-08-16_at_02.25.00.jpg"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/vlcsnap-2025-09-23-01h57m08s948.png"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873408/vlcsnap-2025-09-23-01h57m04s883.png"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873408/WhatsApp_Image_2026-08-16_at_02.25.00_1.jpg"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873405/vlcsnap-2025-09-23-01h57m03s122.png"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873405/vlcsnap-2025-09-23-01h47m18s000.png"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873404/vlcsnap-2025-09-23-01h47m24s110.png"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873404/vlcsnap-2025-09-23-01h47m16s104.png"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873401/vlcsnap-2025-09-23-01h47m14s958.png"
-    },
-
-    {
-        type:"image",
-        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873400/vlcsnap-2025-09-23-01h47m03s282.png"
-    }
-
-];
-
-
-/* =========================================================
-   VARIABLES CARROUSEL
-========================================================= */
-
-/*
-   26 médias
-   4 par page
-   7 pages
-
-   Page 7 :
-   2 derniers médias
-   + 2 cartes texte
-*/
-
-const perPage = 4;
-
-let page = 0;
-let position = 0;
-
-let autoTimer;
-
-
-/* =========================================================
-   MOT DE PASSE
-========================================================= */
 
 function checkPassword(){
 
@@ -2134,32 +1652,27 @@ function checkPassword(){
                 {transform:"translateX(0)"}
             ],
             {
-                duration:350
+                duration:250
             }
         );
 
         return;
     }
 
-
     error.textContent =
         "Préparation de la surprise...";
 
-
     music.play().catch(()=>{});
-
 
     passwordScreen.classList.add("hide");
 
     loading.classList.add("active");
-
 
     setTimeout(()=>{
 
         loading.classList.remove("active");
 
         experience.classList.add("active");
-
 
         setTimeout(()=>{
 
@@ -2171,12 +1684,11 @@ function checkPassword(){
 
                 buildPage();
 
-            },700);
+            },500);
 
-        },2500);
+        },1800);
 
-    },2500);
-
+    },1800);
 }
 
 enter.onclick =
@@ -2194,109 +1706,229 @@ password.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
    MUSIQUE
-========================================================= */
+===================================================== */
 
-music.volume = .3;
+music.volume=.3;
 
-musicButton.onclick = ()=>{
+musicButton.onclick=()=>{
 
     if(music.paused){
 
-        music.play()
-            .then(()=>{
-                musicButton.textContent="🔊";
-            })
-            .catch(()=>{});
+        music.play().then(()=>{
+            musicButton.textContent="🔊";
+        }).catch(()=>{});
 
     }else{
 
         music.pause();
 
         musicButton.textContent="🔇";
-
     }
 
 };
 
 
-/* =========================================================
-   CRÉATION D'UN MÉDIA
-========================================================= */
+/* =====================================================
+   MÉDIAS
+===================================================== */
+
+const medias=[
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/WhatsApp_Image_2026-08-16_at_02.25.01_1.jpg"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873461/WhatsApp_Video_2026-08-16_at_02.31.00.mp4"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873450/Photo_Collage_Maker_2025_09_24_12_01_26.png"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873445/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_01.11.48_b471640a.mp4"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873411/WhatsApp_Image_2026-08-16_at_02.25.02_1.jpg"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.02.jpg"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.01.jpg"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.01_2.jpg"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873444/WhatsApp_Video_2026-08-16_at_02.25.03.mp4"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873442/WhatsApp_Video_2026-08-16_at_02.25.03_2.mp4"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873437/WhatsApp_Video_2026-08-16_at_02.25.01.mp4"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873437/WhatsApp_Video_2026-08-16_at_02.25.03_1.mp4"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873436/WhatsApp_Video_2026-08-16_at_02.25.02.mp4"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873424/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_00.54.47_d9ad782b.mp4"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873422/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_01.10.56_8bb80754.mp4"
+},
+
+{
+type:"video",
+src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873419/WhatsApp_Video_2026-08-16_at_02.25.00.mp4"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/WhatsApp_Image_2026-08-16_at_02.25.00.jpg"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/vlcsnap-2025-09-23-01h57m08s948.png"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873408/vlcsnap-2025-09-23-01h57m04s883.png"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873408/WhatsApp_Image_2026-08-16_at_02.25.00_1.jpg"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873405/vlcsnap-2025-09-23-01h57m03s122.png"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873405/vlcsnap-2025-09-23-01h47m18s000.png"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873404/vlcsnap-2025-09-23-01h47m24s110.png"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873404/vlcsnap-2025-09-23-01h47m16s104.png"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873401/vlcsnap-2025-09-23-01h47m14s958.png"
+},
+
+{
+type:"image",
+src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873400/vlcsnap-2025-09-23-01h47m03s282.png"
+}
+
+];
+
+
+/* =====================================================
+   CARROUSEL
+===================================================== */
+
+const PER_PAGE=4;
+
+let page=0;
+let position=0;
+let autoTimer;
+
+
+/* =====================================================
+   CRÉER MÉDIA
+===================================================== */
 
 function createMedia(item){
 
-    const card =
-        document.createElement("div");
+    const card=document.createElement("div");
 
-    card.className =
-        "media";
+    card.className="media";
 
+    if(item.type==="image"){
 
-    if(item.type === "image"){
+        const img=document.createElement("img");
 
-        const img =
-            document.createElement("img");
-
-        img.src =
-            item.src;
-
-        img.loading =
-            "eager";
-
-        img.alt =
-            "Souvenir";
+        img.src=item.src;
+        img.loading="eager";
+        img.alt="Souvenir";
 
         card.appendChild(img);
 
     }else{
 
-        const video =
-            document.createElement("video");
+        const video=document.createElement("video");
 
-        video.src =
-            item.src;
-
-        video.autoplay =
-            true;
-
-        video.muted =
-            true;
-
-        video.loop =
-            true;
-
-        video.playsInline =
-            true;
-
-        video.preload =
-            "auto";
-
-        video.controls =
-            false;
+        video.src=item.src;
+        video.autoplay=true;
+        video.muted=true;
+        video.loop=true;
+        video.playsInline=true;
+        video.preload="auto";
 
         card.appendChild(video);
-
     }
 
     return card;
 }
 
 
-/* =========================================================
+/* =====================================================
    CARTES TEXTE
-========================================================= */
+===================================================== */
 
 function createTextCard(title,text,emoji){
 
-    const card =
-        document.createElement("div");
+    const card=document.createElement("div");
 
-    card.className =
-        "textCard";
+    card.className="textCard";
 
-    card.innerHTML = `
+    card.innerHTML=`
 
         <div class="textContent">
 
@@ -2313,18 +1945,17 @@ function createTextCard(title,text,emoji){
             </p>
 
         </div>
-
     `;
 
     return card;
 }
 
 
-/* =========================================================
-   POSITIONS
-========================================================= */
+/* =====================================================
+   POSITION
+===================================================== */
 
-function setPosition(card, position){
+function setPosition(card,p){
 
     card.classList.remove(
         "center",
@@ -2334,157 +1965,112 @@ function setPosition(card, position){
         "right2"
     );
 
-
-    if(position === 0){
-
+    if(p===0)
         card.classList.add("center");
 
-    }else if(position === -1){
-
+    else if(p===-1)
         card.classList.add("left1");
 
-    }else if(position === 1){
-
+    else if(p===1)
         card.classList.add("right1");
 
-    }else if(position <= -2){
-
+    else if(p<=-2)
         card.classList.add("left2");
 
-    }else{
-
+    else
         card.classList.add("right2");
-
-    }
-
 }
 
 
-/* =========================================================
-   CONSTRUIRE UNE PAGE
-========================================================= */
+/* =====================================================
+   CONSTRUIRE PAGE
+===================================================== */
 
 function buildPage(){
 
     clearTimeout(autoTimer);
 
-    carousel.innerHTML = "";
+    carousel.innerHTML="";
+    dots.innerHTML="";
 
-    dots.innerHTML = "";
 
+    if(page<6){
 
-    /*
-       PAGE NORMALE
-    */
-
-    if(page < 6){
-
-        const start =
-            page * 4;
-
-        const group =
+        const group=
             medias.slice(
-                start,
-                start + 4
+                page*4,
+                page*4+4
             );
 
+        group.forEach(item=>{
 
-        group.forEach(
-            (item,index)=>{
+            carousel.appendChild(
+                createMedia(item)
+            );
 
-                const card =
-                    createMedia(item);
+        });
 
-                carousel.appendChild(card);
-
-            }
-        );
-
-
-        /*
-           Position initiale :
-           premier au centre
-        */
-
-        position = 0;
-
+        position=0;
 
         updateCarousel();
 
+        group.forEach((_,i)=>{
 
-        /*
-           Petits points
-        */
+            const dot=
+                document.createElement("span");
 
-        group.forEach(
-            (_,index)=>{
+            dot.className="dot";
 
-                const dot =
-                    document.createElement("span");
+            if(i===0)
+                dot.classList.add("active");
 
-                dot.className =
-                    "dot";
+            dots.appendChild(dot);
+        });
 
-                if(index === 0){
-                    dot.classList.add("active");
-                }
-
-                dots.appendChild(dot);
-
-            }
-        );
-
-
-        counter.textContent =
+        counter.textContent=
             String(page+1).padStart(2,"0")
-            +
-            " / 07";
+            +" / 07";
 
 
         /*
-           Défilement rapide
+         =================================================
+         VITESSE DU DÉFILEMENT
+         =================================================
+
+         AVANT : 2800 ms
+
+         MAINTENANT : 1100 ms
+
+         Donc environ 2,5 fois plus rapide.
         */
 
-        autoTimer =
+        autoTimer=
             setTimeout(
                 nextMedia,
-                2800
+                1100
             );
 
         return;
     }
 
 
-    /* =====================================================
-       PAGE 7
-    ==================================================== */
+    /* PAGE 7 */
 
-    const last =
-        medias.slice(24,26);
+    medias.slice(24,26).forEach(item=>{
 
+        carousel.appendChild(
+            createMedia(item)
+        );
 
-    last.forEach(
-        item=>{
-
-            carousel.appendChild(
-                createMedia(item)
-            );
-
-        }
-    );
-
-
-    /*
-       Carte texte 1
-    */
+    });
 
     carousel.appendChild(
         createTextCard(
             "Une nouvelle année ✨",
 
             `
-            Que cette nouvelle année
-            soit remplie de
+            Que cette nouvelle année soit
+            remplie de
             <strong>bonheur</strong>,
             de réussite, de belles surprises
             et de souvenirs inoubliables.
@@ -2493,11 +2079,6 @@ function buildPage(){
             "🎂"
         )
     );
-
-
-    /*
-       Carte texte 2
-    */
 
     carousel.appendChild(
         createTextCard(
@@ -2516,154 +2097,114 @@ function buildPage(){
         )
     );
 
-
-    position = 0;
+    position=0;
 
     updateCarousel();
 
-
     for(let i=0;i<4;i++){
 
-        const dot =
+        const dot=
             document.createElement("span");
 
-        dot.className =
-            "dot";
+        dot.className="dot";
 
-        if(i === 0)
+        if(i===0)
             dot.classList.add("active");
 
         dots.appendChild(dot);
-
     }
 
+    counter.textContent="07 / 07";
 
-    counter.textContent =
-        "07 / 07";
-
-
-    autoTimer =
+    autoTimer=
         setTimeout(
-            showFinal,
-            6500
+            nextMedia,
+            1500
         );
-
 }
 
 
-/* =========================================================
-   MISE À JOUR CARROUSEL
-========================================================= */
+/* =====================================================
+   UPDATE
+===================================================== */
 
 function updateCarousel(){
 
-    const cards =
+    const cards=
         [...carousel.children];
 
+    cards.forEach((card,index)=>{
 
-    cards.forEach(
-        (card,index)=>{
+        const relative=
+            index-position;
 
-            const relative =
-                index - position;
+        setPosition(
+            card,
+            relative
+        );
 
+        if(card.classList.contains("textCard")){
 
-            setPosition(
-                card,
-                relative
+            card.style.setProperty(
+                "--x",
+
+                relative===0
+                ?"0px"
+                :relative<0
+                ?"-31vw"
+                :"31vw"
             );
-
-
-            /*
-               Les cartes texte ont besoin
-               d'une légère adaptation
-            */
-
-            if(
-                card.classList.contains("textCard")
-            ){
-
-                card.style.setProperty(
-                    "--x",
-                    relative === 0
-                    ? "0px"
-                    : relative < 0
-                    ? "-31vw"
-                    : "31vw"
-                );
-
-            }
-
         }
-    );
+    });
 
 
-    /*
-       Points
-    */
-
-    const points =
-        [...dots.children];
-
-    points.forEach(
+    [...dots.children].forEach(
         (dot,index)=>{
 
             dot.classList.toggle(
                 "active",
-                index === position
+                index===position
             );
 
         }
     );
 
 
-    /*
-       Lire les vidéos visibles
-    */
+    cards.forEach((card,index)=>{
 
-    cards.forEach(
-        (card,index)=>{
+        const video=
+            card.querySelector("video");
 
-            const video =
-                card.querySelector("video");
+        if(video){
 
-            if(video){
+            if(
+                Math.abs(index-position)<=1
+            ){
 
-                if(
-                    Math.abs(
-                        index-position
-                    ) <= 1
-                ){
+                video.play().catch(()=>{});
 
-                    video.play().catch(()=>{});
+            }else{
 
-                }else{
-
-                    video.pause();
-
-                }
+                video.pause();
 
             }
-
         }
-    );
-
+    });
 }
 
 
-/* =========================================================
-   MÉDIA SUIVANT
-========================================================= */
+/* =====================================================
+   SUIVANT
+===================================================== */
 
 function nextMedia(){
 
-    const cards =
+    const cards=
         [...carousel.children];
 
-
     if(
-        position <
-        cards.length - 1
+        position<
+        cards.length-1
     ){
 
         position++;
@@ -2676,38 +2217,37 @@ function nextMedia(){
 
         updateCarousel();
 
-
         clearTimeout(autoTimer);
 
-        autoTimer =
+        /*
+         ==============================================
+         TRÈS RAPIDE
+         ==============================================
+        */
+
+        autoTimer=
             setTimeout(
                 nextMedia,
-                2800
+                1100
             );
 
     }else{
 
-        /*
-           Fin de la page
-        */
-
         setTimeout(
             nextPage,
-            350
+            200
         );
-
     }
-
 }
 
 
-/* =========================================================
-   MÉDIA PRÉCÉDENT
-========================================================= */
+/* =====================================================
+   PRÉCÉDENT
+===================================================== */
 
 function previousMedia(){
 
-    if(position > 0){
+    if(position>0){
 
         position--;
 
@@ -2718,15 +2258,13 @@ function previousMedia(){
         flash.classList.add("active");
 
         updateCarousel();
-
     }
-
 }
 
 
-/* =========================================================
+/* =====================================================
    PAGE SUIVANTE
-========================================================= */
+===================================================== */
 
 function nextPage(){
 
@@ -2734,64 +2272,29 @@ function nextPage(){
 
     page++;
 
-    if(page >= 7){
+    if(page>=7){
 
         showFinal();
 
         return;
-
     }
 
     buildPage();
-
 }
 
 
-/* =========================================================
+/* =====================================================
    BOUTONS
-========================================================= */
+===================================================== */
 
-next.onclick =
-    nextMedia;
+next.onclick=nextMedia;
 
-prev.onclick =
-    previousMedia;
+prev.onclick=previousMedia;
 
 
-/* =========================================================
-   CLIC SUR LES POINTS
-========================================================= */
-
-dots.addEventListener(
-    "click",
-    e=>{
-
-        if(
-            !e.target.classList.contains("dot")
-        ){
-            return;
-        }
-
-        const index =
-            [...dots.children]
-            .indexOf(e.target);
-
-        if(index < 0){
-            return;
-        }
-
-        position =
-            index;
-
-        updateCarousel();
-
-    }
-);
-
-
-/* =========================================================
-   PAGE FINALE
-========================================================= */
+/* =====================================================
+   FINAL
+===================================================== */
 
 function showFinal(){
 
@@ -2804,17 +2307,16 @@ function showFinal(){
     createConfetti();
 
     createBalloons();
-
 }
 
 
-/* =========================================================
+/* =====================================================
    CONFETTIS
-========================================================= */
+===================================================== */
 
 function createConfetti(){
 
-    const colors = [
+    const colors=[
         "#ff173d",
         "#ff8e3d",
         "#ffd166",
@@ -2822,38 +2324,34 @@ function createConfetti(){
         "#ffffff"
     ];
 
-
     for(let i=0;i<100;i++){
 
-        const c =
+        const c=
             document.createElement("i");
 
-        c.style.position =
-            "absolute";
+        c.style.position="absolute";
 
-        c.style.width =
+        c.style.width=
             (3+Math.random()*7)+"px";
 
-        c.style.height =
+        c.style.height=
             (6+Math.random()*12)+"px";
 
-        c.style.left =
+        c.style.left=
             Math.random()*100+"%";
 
-        c.style.top =
-            "-20px";
+        c.style.top="-20px";
 
-        c.style.background =
+        c.style.background=
             colors[
                 Math.floor(
                     Math.random()*colors.length
                 )
             ];
 
-        c.style.zIndex =
-            "3";
+        c.style.zIndex="3";
 
-        c.style.animation =
+        c.style.animation=
             `
             confettiFall
             ${2+Math.random()*4}s
@@ -2863,66 +2361,59 @@ function createConfetti(){
             `;
 
         final.appendChild(c);
-
     }
-
 }
 
 
-/* =========================================================
+/* =====================================================
    BALLONS
-========================================================= */
+===================================================== */
 
 function createBalloons(){
 
-    const colors = [
+    const colors=[
         "rgba(255,20,60,.75)",
         "rgba(255,80,120,.7)",
         "rgba(255,150,50,.7)",
         "rgba(190,40,100,.65)"
     ];
 
-
     for(let i=0;i<16;i++){
 
-        const b =
+        const b=
             document.createElement("div");
 
-        b.style.position =
-            "absolute";
+        b.style.position="absolute";
 
-        b.style.width =
+        b.style.width=
             (30+Math.random()*35)+"px";
 
-        b.style.height =
+        b.style.height=
             (40+Math.random()*50)+"px";
 
-        b.style.borderRadius =
-            "50%";
+        b.style.borderRadius="50%";
 
-        b.style.left =
+        b.style.left=
             Math.random()*100+"%";
 
-        b.style.bottom =
-            "-100px";
+        b.style.bottom="-100px";
 
-        b.style.background =
+        b.style.background=
             colors[
                 Math.floor(
                     Math.random()*colors.length
                 )
             ];
 
-        b.style.border =
+        b.style.border=
             "1px solid rgba(255,255,255,.4)";
 
-        b.style.boxShadow =
+        b.style.boxShadow=
             "0 0 20px rgba(255,30,70,.5)";
 
-        b.style.zIndex =
-            "3";
+        b.style.zIndex="3";
 
-        b.style.animation =
+        b.style.animation=
             `
             balloonUp
             ${7+Math.random()*8}s
@@ -2932,20 +2423,18 @@ function createBalloons(){
             `;
 
         final.appendChild(b);
-
     }
-
 }
 
 
-/* =========================================================
-   ANIMATIONS FINALES
-========================================================= */
+/* =====================================================
+   ANIMATIONS
+===================================================== */
 
-const extraStyle =
+const extraStyle=
 document.createElement("style");
 
-extraStyle.textContent = `
+extraStyle.textContent=`
 
 @keyframes confettiFall{
 
@@ -2960,7 +2449,6 @@ extraStyle.textContent = `
             translateY(110vh)
             rotate(720deg);
     }
-
 }
 
 @keyframes balloonUp{
@@ -2984,27 +2472,23 @@ extraStyle.textContent = `
 
         opacity:0;
     }
-
 }
-
 `;
 
 document.head.appendChild(extraStyle);
 
 
-/* =========================================================
+/* =====================================================
    SWIPE MOBILE
-========================================================= */
+===================================================== */
 
-let touchStartX = 0;
+let touchStartX=0;
 
 document.addEventListener(
     "touchstart",
     e=>{
-
-        touchStartX =
+        touchStartX=
             e.changedTouches[0].screenX;
-
     },
     {passive:true}
 );
@@ -3013,23 +2497,20 @@ document.addEventListener(
     "touchend",
     e=>{
 
-        const touchEndX =
+        const touchEndX=
             e.changedTouches[0].screenX;
 
-        const difference =
-            touchStartX - touchEndX;
+        const difference=
+            touchStartX-touchEndX;
 
-
-        if(difference > 50){
+        if(difference>40){
 
             nextMedia();
 
-        }else if(difference < -50){
+        }else if(difference<-40){
 
             previousMedia();
-
         }
-
     },
     {passive:true}
 );
