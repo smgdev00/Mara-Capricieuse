@@ -1,0 +1,3040 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sokhna Bintou — Joyeux Anniversaire</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#020204;
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
+}
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+    --red:#ff163d;
+    --red2:#ff3d4f;
+    --orange:#ff9d3d;
+    --gold:#ffd166;
+    --pink:#ff477d;
+}
+
+
+/* =========================================================
+   ÉCRAN MOT DE PASSE
+========================================================= */
+
+#passwordScreen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+#passwordScreen.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+
+/* PHOTO QUI COUVRE TOUT */
+
+.passwordBackground{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.08),
+            rgba(0,0,0,.35)
+        ),
+        url("https://res.cloudinary.com/qx72zpuf/image/upload/v1786873409/vlcsnap-2025-09-23-01h57m08s948.png");
+
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+
+    filter:
+        brightness(.78)
+        saturate(1.08);
+}
+
+
+/* VOILE */
+
+.passwordBackground::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 30% 50%,
+            transparent 0%,
+            rgba(0,0,0,.1) 35%,
+            rgba(0,0,0,.7) 100%
+        );
+}
+
+
+/* RAYONS */
+
+.passwordRays{
+    position:absolute;
+    inset:-100%;
+
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            transparent 6deg,
+            rgba(255,20,50,.13) 6.5deg,
+            transparent 7deg,
+            transparent 13deg
+        );
+
+    animation:
+        rotateRays 25s linear infinite;
+}
+
+@keyframes rotateRays{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* CONTENU MOT DE PASSE */
+
+.passwordContent{
+    position:absolute;
+    z-index:10;
+
+    left:8%;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:min(390px,38vw);
+
+    text-align:center;
+}
+
+
+/* PETIT ÉCLAIR */
+
+.passwordBolt{
+    font-size:42px;
+
+    color:#ffb348;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 20px #ff452f,
+        0 0 45px #ff173d;
+
+    animation:
+        boltPulse .7s infinite alternate;
+}
+
+@keyframes boltPulse{
+    to{
+        transform:scale(1.15);
+        filter:brightness(1.4);
+    }
+}
+
+
+.passwordContent h1{
+    margin-top:10px;
+
+    font-size:
+        clamp(25px,4vw,48px);
+
+    line-height:.95;
+
+    font-style:italic;
+
+    text-transform:uppercase;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.5),
+        0 0 25px rgba(255,30,50,.8);
+}
+
+.passwordContent h1 span{
+    display:block;
+
+    color:#ffb34d;
+
+    margin-top:6px;
+
+    font-size:
+        clamp(32px,5vw,58px);
+
+    text-shadow:
+        0 0 10px #ff7c35,
+        0 0 30px #ff173d;
+}
+
+.passwordContent p{
+    margin-top:16px;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    font-weight:bold;
+}
+
+
+.passwordBox{
+    margin:15px auto 0;
+
+    width:150px;
+}
+
+#password{
+    width:100%;
+
+    height:39px;
+
+    border:
+        1px solid #ff354c;
+
+    border-radius:7px;
+
+    background:
+        rgba(0,0,0,.5);
+
+    outline:none;
+
+    color:white;
+
+    text-align:center;
+
+    letter-spacing:5px;
+
+    box-shadow:
+        0 0 15px rgba(255,30,60,.45);
+}
+
+#password::placeholder{
+    color:#ddd;
+}
+
+
+#enter{
+    margin-top:9px;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(255,255,255,.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff9d35,
+            #ff372f
+        );
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    box-shadow:
+        0 0 15px #ff3c32,
+        0 0 30px rgba(255,30,60,.5);
+
+    transition:.3s;
+}
+
+#enter:hover{
+    transform:scale(1.12);
+
+    box-shadow:
+        0 0 25px #ff7040,
+        0 0 50px #ff173d;
+}
+
+#error{
+    min-height:18px;
+
+    margin-top:8px;
+
+    color:#ff8794;
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   CHARGEMENT
+========================================================= */
+
+#loading{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    background:#020204;
+}
+
+#loading.active{
+    display:flex;
+}
+
+.loadingBolt{
+    font-size:100px;
+
+    color:#ffb64b;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 35px #ff4b30,
+        0 0 70px #ff173d;
+
+    animation:
+        loadBolt .5s infinite alternate;
+}
+
+@keyframes loadBolt{
+    to{
+        transform:scale(1.12);
+    }
+}
+
+.loadingText{
+    margin-top:15px;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    font-weight:bold;
+}
+
+.loadingBar{
+    margin-top:20px;
+
+    width:280px;
+    height:3px;
+
+    background:#251016;
+
+    overflow:hidden;
+}
+
+.loadingBar span{
+    display:block;
+
+    width:0;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff173d,
+            #ff9e3e,
+            white
+        );
+
+    box-shadow:
+        0 0 12px #ff3048;
+
+    animation:
+        loading 2.4s ease forwards;
+}
+
+@keyframes loading{
+    to{
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   EXPÉRIENCE
+========================================================= */
+
+#experience{
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    background:#020204;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:opacity 1s ease;
+}
+
+#experience.active{
+    opacity:1;
+    visibility:visible;
+}
+
+
+/* =========================================================
+   FOND VITESSE
+========================================================= */
+
+.speedBackground{
+    position:absolute;
+    inset:-80%;
+
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            transparent 5deg,
+            rgba(255,20,45,.15) 5.5deg,
+            transparent 6deg,
+            transparent 12deg
+        );
+
+    animation:
+        speedRotate 20s linear infinite;
+}
+
+@keyframes speedRotate{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* CENTRE */
+
+.centerLight{
+    position:absolute;
+
+    width:65vmin;
+    height:65vmin;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,60,35,.28),
+            rgba(255,20,50,.1) 40%,
+            transparent 70%
+        );
+
+    filter:blur(15px);
+
+    animation:
+        centerGlow 2.5s infinite alternate;
+}
+
+@keyframes centerGlow{
+    to{
+        transform:
+            translate(-50%,-50%)
+            scale(1.2);
+
+        opacity:.65;
+    }
+}
+
+
+/* =========================================================
+   LIGNES RAPIDES
+========================================================= */
+
+.ray{
+    position:absolute;
+
+    width:var(--width);
+    height:2px;
+
+    left:var(--left);
+    top:var(--top);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff293f,
+            #ffb54d,
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px #ff263d;
+
+    transform:rotate(var(--rotation));
+
+    animation:
+        rayMove var(--duration)
+        linear var(--delay)
+        infinite;
+
+    opacity:0;
+}
+
+@keyframes rayMove{
+
+    0%{
+        transform:
+            translateX(-80vw)
+            rotate(var(--rotation))
+            scaleX(.2);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    80%{
+        opacity:.7;
+    }
+
+    100%{
+        transform:
+            translateX(160vw)
+            rotate(var(--rotation))
+            scaleX(2);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+#intro{
+    position:absolute;
+    inset:0;
+    z-index:50;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    text-align:center;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+#intro.hide{
+    opacity:0;
+    transform:scale(1.4);
+    filter:blur(10px);
+}
+
+.introTop{
+    font-size:11px;
+
+    letter-spacing:4px;
+
+    font-weight:bold;
+}
+
+.introName{
+    margin-top:14px;
+
+    font-size:
+        clamp(40px,9vw,105px);
+
+    font-weight:900;
+
+    font-style:italic;
+
+    background:
+        linear-gradient(
+            90deg,
+            white,
+            #ffbd60,
+            #ff3155,
+            white
+        );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:
+        gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove{
+    to{
+        background-position:300%;
+    }
+}
+
+.introBottom{
+    margin-top:15px;
+
+    font-size:
+        clamp(16px,3vw,30px);
+
+    font-weight:bold;
+}
+
+.introBolt{
+    margin-top:20px;
+
+    font-size:65px;
+
+    color:#ffb34c;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 30px #ff4c2e,
+        0 0 60px #ff173d;
+
+    animation:
+        introBolt .7s infinite alternate;
+}
+
+@keyframes introBolt{
+    to{
+        transform:scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   GALERIE
+========================================================= */
+
+#gallery{
+    position:absolute;
+    inset:0;
+    z-index:30;
+
+    opacity:0;
+    visibility:hidden;
+}
+
+#gallery.active{
+    opacity:1;
+    visibility:visible;
+}
+
+
+/* TITRE */
+
+.galleryTitle{
+    position:absolute;
+
+    top:27px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:1000;
+
+    white-space:nowrap;
+
+    font-size:
+        clamp(13px,2.4vw,24px);
+
+    font-weight:bold;
+
+    font-style:italic;
+
+    letter-spacing:2px;
+
+    text-shadow:
+        0 0 8px #ff3048,
+        0 0 20px #ff3b32;
+}
+
+
+/* SOUS-TITRE */
+
+.gallerySub{
+    position:absolute;
+
+    bottom:48px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:1000;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    color:#ddd;
+}
+
+
+/* =========================================================
+   CARROUSEL
+========================================================= */
+
+.carousel{
+    position:absolute;
+    inset:0;
+
+    perspective:1300px;
+
+    transform-style:preserve-3d;
+}
+
+
+/* CARTE */
+
+.media{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:
+        clamp(260px,42vw,620px);
+
+    height:
+        clamp(175px,47vh,430px);
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform .75s
+        cubic-bezier(.16,.8,.18,1),
+        opacity .55s ease,
+        filter .55s ease;
+
+    border-radius:17px;
+
+    overflow:hidden;
+
+    background:#020204;
+
+    border:
+        2px solid #ff344a;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 20px #ff1d3d,
+        0 0 50px rgba(255,30,50,.7);
+
+    transform:
+        translate(-50%,-50%)
+        translateX(var(--x))
+        translateZ(var(--z))
+        rotateY(var(--rotate))
+        scale(var(--scale));
+
+    opacity:var(--opacity);
+
+    filter:blur(var(--blur));
+
+    z-index:var(--zindex);
+}
+
+
+/* média */
+
+.media img,
+.media video{
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    background:#010103;
+}
+
+
+/* REFLET */
+
+.media::after{
+    content:"";
+
+    position:absolute;
+
+    top:-20%;
+    left:-150%;
+
+    width:120%;
+    height:160%;
+
+    background:
+        linear-gradient(
+            100deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    transform:rotate(15deg);
+
+    animation:
+        shine 2.8s infinite;
+}
+
+@keyframes shine{
+
+    0%,30%{
+        left:-150%;
+    }
+
+    65%,100%{
+        left:150%;
+    }
+}
+
+
+/* CADRE LUMINEUX */
+
+.media::before{
+    content:"";
+
+    position:absolute;
+    inset:-2px;
+
+    border-radius:18px;
+
+    border:2px solid transparent;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ff163d,
+            #ffb54c,
+            #ff254d,
+            #ff6a36
+        ) border-box;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    background-size:300%;
+
+    animation:
+        borderGradient 1.7s linear infinite;
+
+    z-index:5;
+
+    pointer-events:none;
+}
+
+@keyframes borderGradient{
+    to{
+        background-position:300%;
+    }
+}
+
+
+/* =========================================================
+   POSITIONS DU CARROUSEL
+========================================================= */
+
+/* centre */
+
+.media.center{
+    --x:0px;
+    --z:250px;
+    --rotate:0deg;
+    --scale:1;
+    --opacity:1;
+    --blur:0px;
+    --zindex:50;
+}
+
+
+/* gauche proche */
+
+.media.left1{
+    --x:-31vw;
+    --z:-20px;
+    --rotate:12deg;
+    --scale:.72;
+    --opacity:.9;
+    --blur:1px;
+    --zindex:35;
+}
+
+
+/* droite proche */
+
+.media.right1{
+    --x:31vw;
+    --z:-20px;
+    --rotate:-12deg;
+    --scale:.72;
+    --opacity:.9;
+    --blur:1px;
+    --zindex:35;
+}
+
+
+/* gauche très loin */
+
+.media.left2{
+    --x:-62vw;
+    --z:-400px;
+    --rotate:23deg;
+    --scale:.47;
+    --opacity:.35;
+    --blur:5px;
+    --zindex:15;
+}
+
+
+/* droite très loin */
+
+.media.right2{
+    --x:62vw;
+    --z:-400px;
+    --rotate:-23deg;
+    --scale:.47;
+    --opacity:.35;
+    --blur:5px;
+    --zindex:15;
+}
+
+
+/* =========================================================
+   FLÈCHES
+========================================================= */
+
+.arrow{
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    z-index:2000;
+
+    width:48px;
+    height:90px;
+
+    border:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,30,50,.08)
+        );
+
+    color:white;
+
+    font-size:48px;
+
+    cursor:pointer;
+
+    text-shadow:
+        0 0 10px #ff3148;
+
+    transition:.25s;
+}
+
+.arrow:hover{
+    color:#ffb04b;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 25px #ff334b;
+
+    transform:
+        translateY(-50%)
+        scale(1.15);
+}
+
+.arrow.left{
+    left:12px;
+}
+
+.arrow.right{
+    right:12px;
+}
+
+
+/* =========================================================
+   INDICATEURS
+========================================================= */
+
+.dots{
+    position:absolute;
+
+    bottom:17px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:2000;
+
+    display:flex;
+
+    gap:12px;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#777;
+
+    box-shadow:0 0 5px #777;
+
+    transition:.3s;
+}
+
+.dot.active{
+    background:white;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 15px #ff3a4c;
+
+    transform:scale(1.5);
+}
+
+
+/* =========================================================
+   BOUTON MUSIQUE
+========================================================= */
+
+.music{
+    position:absolute;
+
+    right:18px;
+    top:17px;
+
+    z-index:3000;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(255,255,255,.4);
+
+    background:
+        rgba(0,0,0,.45);
+
+    color:white;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(8px);
+
+    box-shadow:
+        0 0 15px rgba(255,30,50,.3);
+}
+
+
+/* =========================================================
+   COMPTEUR
+========================================================= */
+
+.counter{
+    position:absolute;
+
+    right:22px;
+    bottom:19px;
+
+    z-index:2000;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+}
+
+
+/* =========================================================
+   FLASH DE TRANSITION
+========================================================= */
+
+.flash{
+    position:absolute;
+    inset:0;
+
+    z-index:5000;
+
+    background:white;
+
+    pointer-events:none;
+
+    opacity:0;
+}
+
+.flash.active{
+    animation:
+        flashEffect .42s ease;
+}
+
+@keyframes flashEffect{
+
+    0%{
+        opacity:0;
+    }
+
+    15%{
+        opacity:.9;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   CARTES TEXTE FINALES
+========================================================= */
+
+.textCard{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:
+        clamp(280px,43vw,610px);
+
+    min-height:
+        clamp(190px,40vh,360px);
+
+    padding:35px;
+
+    transform:
+        translate(-50%,-50%);
+
+    border:
+        2px solid #ff3850;
+
+    border-radius:18px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,30,60,.15),
+            rgba(3,2,5,.95) 70%
+        );
+
+    box-shadow:
+        0 0 8px white,
+        0 0 25px #ff173d,
+        0 0 60px rgba(255,20,50,.6);
+
+    text-align:center;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    animation:
+        textAppear .9s
+        cubic-bezier(.12,.8,.18,1)
+        forwards;
+}
+
+@keyframes textAppear{
+
+    from{
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.25)
+            rotateY(70deg);
+
+        filter:blur(15px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1)
+            rotateY(0);
+
+        filter:blur(0);
+    }
+}
+
+.textCard::before{
+    content:"";
+
+    position:absolute;
+    inset:-3px;
+
+    border-radius:20px;
+
+    border:2px solid transparent;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ff173d,
+            #ffbf5b,
+            #ff4275,
+            #ff173d
+        ) border-box;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    background-size:300%;
+
+    animation:
+        borderGradient 2s linear infinite;
+}
+
+.textContent{
+    position:relative;
+    z-index:5;
+}
+
+.textContent .emoji{
+    font-size:38px;
+}
+
+.textContent h2{
+    margin-top:10px;
+
+    font-size:
+        clamp(22px,4vw,43px);
+
+    font-style:italic;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffbd61,
+            #ff477c,
+            #fff
+        );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    animation:
+        gradientMove 3s linear infinite;
+}
+
+.textContent p{
+    margin-top:15px;
+
+    line-height:1.7;
+
+    font-size:
+        clamp(11px,1.7vw,17px);
+
+    color:#eee;
+}
+
+.textContent strong{
+    color:#ff6682;
+
+    text-shadow:
+        0 0 10px #ff244b;
+}
+
+
+/* =========================================================
+   PAGE FINALE
+========================================================= */
+
+#final{
+    position:absolute;
+    inset:0;
+
+    z-index:9000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(255,30,70,.45),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(255,150,50,.3),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(255,30,100,.3),
+            transparent 40%
+        ),
+        #080207;
+
+    overflow:hidden;
+}
+
+#final.active{
+    display:flex;
+
+    animation:
+        finalAppear 1.2s ease forwards;
+}
+
+@keyframes finalAppear{
+
+    from{
+        opacity:0;
+        transform:scale(1.08);
+        filter:blur(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+}
+
+.finalRays{
+    position:absolute;
+    inset:-70%;
+
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            transparent 5deg,
+            rgba(255,30,60,.15) 5.5deg,
+            transparent 6deg,
+            transparent 12deg
+        );
+
+    animation:
+        speedRotate 25s linear infinite;
+}
+
+.finalSmall{
+    position:relative;
+    z-index:5;
+
+    font-size:11px;
+
+    letter-spacing:4px;
+}
+
+.finalTitle{
+    position:relative;
+    z-index:5;
+
+    margin-top:15px;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-style:italic;
+
+    font-size:
+        clamp(55px,12vw,140px);
+
+    line-height:.8;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffb34b,
+            white,
+            #ff477c,
+            #ffb34b,
+            white
+        );
+
+    background-size:400%;
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    filter:
+        drop-shadow(0 0 8px #ff304c)
+        drop-shadow(0 0 25px #ff173d);
+
+    animation:
+        gradientMove 4s linear infinite;
+}
+
+.finalName{
+    position:relative;
+    z-index:5;
+
+    margin-top:28px;
+
+    padding:10px 25px;
+
+    border:
+        1px solid rgba(255,90,100,.6);
+
+    border-radius:30px;
+
+    background:
+        rgba(255,30,60,.08);
+
+    letter-spacing:3px;
+}
+
+.finalMessage{
+    position:relative;
+    z-index:5;
+
+    max-width:700px;
+
+    margin-top:18px;
+
+    font-size:
+        clamp(11px,1.8vw,17px);
+
+    line-height:1.8;
+}
+
+.finalMessage strong{
+    color:#ff6384;
+}
+
+.finalEmojis{
+    position:relative;
+    z-index:5;
+
+    margin-top:22px;
+
+    font-size:30px;
+
+    animation:
+        floating 3s ease-in-out infinite;
+}
+
+@keyframes floating{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.replay{
+    position:absolute;
+    z-index:10;
+
+    bottom:18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    padding:9px 22px;
+
+    border:
+        1px solid rgba(255,255,255,.3);
+
+    border-radius:30px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:700px){
+
+    .passwordContent{
+        left:50%;
+        top:57%;
+
+        transform:
+            translate(-50%,-50%);
+
+        width:80vw;
+    }
+
+    .passwordBackground{
+        background-position:
+            center center;
+    }
+
+    .media{
+        width:68vw;
+        height:39vh;
+    }
+
+    .media.left1{
+        --x:-62vw;
+        --scale:.48;
+        --blur:4px;
+        --opacity:.45;
+    }
+
+    .media.right1{
+        --x:62vw;
+        --scale:.48;
+        --blur:4px;
+        --opacity:.45;
+    }
+
+    .media.left2{
+        --x:-90vw;
+        --scale:.3;
+        --opacity:.15;
+    }
+
+    .media.right2{
+        --x:90vw;
+        --scale:.3;
+        --opacity:.15;
+    }
+
+    .arrow{
+        width:35px;
+    }
+
+    .arrow.left{
+        left:0;
+    }
+
+    .arrow.right{
+        right:0;
+    }
+
+    .gallerySub{
+        bottom:47px;
+    }
+
+    .counter{
+        bottom:20px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MOT DE PASSE
+===================================================== -->
+
+<section id="passwordScreen">
+
+    <div class="passwordBackground"></div>
+
+    <div class="passwordRays"></div>
+
+    <div class="passwordContent">
+
+        <div class="passwordBolt">⚡</div>
+
+        <h1>
+            QUELQUE CHOSE
+            <span>DE SPÉCIAL</span>
+            T'ATTEND...
+        </h1>
+
+        <p>
+            ENTRE LE MOT DE PASSE
+        </p>
+
+        <div class="passwordBox">
+
+            <input
+                id="password"
+                type="password"
+                placeholder="••••••"
+                autocomplete="off"
+            >
+
+            <br>
+
+            <button id="enter">
+                ⚡
+            </button>
+
+        </div>
+
+        <div id="error"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CHARGEMENT
+===================================================== -->
+
+<section id="loading">
+
+    <div class="loadingBolt">⚡</div>
+
+    <div class="loadingText">
+        CHARGEMENT DE TON EXPÉRIENCE...
+    </div>
+
+    <div class="loadingBar">
+        <span></span>
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MUSIQUE
+===================================================== -->
+
+<audio
+    id="music"
+    loop
+    preload="auto">
+
+    <source
+        src="https://res.cloudinary.com/qx72zpuf/video/upload/v1786876464/gr0za-birthday-happy-birthday-503371.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+<!-- =====================================================
+     EXPÉRIENCE
+===================================================== -->
+
+<section id="experience">
+
+    <div class="speedBackground"></div>
+
+    <div class="centerLight"></div>
+
+
+    <!-- RAYONS -->
+
+    <div class="ray"
+        style="
+        --width:500px;
+        --left:-10%;
+        --top:20%;
+        --rotation:12deg;
+        --duration:2s;
+        --delay:-.4s;">
+    </div>
+
+    <div class="ray"
+        style="
+        --width:350px;
+        --left:20%;
+        --top:35%;
+        --rotation:-9deg;
+        --duration:2.4s;
+        --delay:-1.2s;">
+    </div>
+
+    <div class="ray"
+        style="
+        --width:600px;
+        --left:30%;
+        --top:50%;
+        --rotation:6deg;
+        --duration:2.1s;
+        --delay:-1.7s;">
+    </div>
+
+    <div class="ray"
+        style="
+        --width:450px;
+        --left:40%;
+        --top:72%;
+        --rotation:-7deg;
+        --duration:2.7s;
+        --delay:-2s;">
+    </div>
+
+    <div class="ray"
+        style="
+        --width:550px;
+        --left:0;
+        --top:87%;
+        --rotation:5deg;
+        --duration:2.2s;
+        --delay:-.8s;">
+    </div>
+
+
+    <!-- =================================================
+         INTRO
+    ================================================== -->
+
+    <div id="intro">
+
+        <div class="introTop">
+            AUJOURD'HUI, C'EST TA JOURNÉE !
+        </div>
+
+        <div class="introName">
+            SOKHNA BINTOU
+        </div>
+
+        <div class="introBottom">
+            ✨ JOYEUX ANNIVERSAIRE ✨
+        </div>
+
+        <div class="introBolt">
+            ⚡
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         GALERIE
+    ================================================== -->
+
+    <div id="gallery">
+
+        <div class="galleryTitle">
+            ⚡ SOUVENIRS INOUBLIABLES ✨
+        </div>
+
+        <div class="gallerySub">
+            UNE PETITE COLLECTION DE BEAUX SOUVENIRS
+        </div>
+
+        <div id="carousel"
+             class="carousel">
+        </div>
+
+        <button
+            class="arrow left"
+            id="prev">
+            ‹
+        </button>
+
+        <button
+            class="arrow right"
+            id="next">
+            ›
+        </button>
+
+        <div
+            id="dots"
+            class="dots">
+        </div>
+
+        <div
+            id="counter"
+            class="counter">
+            01 / 07
+        </div>
+
+        <button
+            id="musicButton"
+            class="music">
+            🔊
+        </button>
+
+    </div>
+
+
+    <!-- FLASH -->
+
+    <div
+        id="flash"
+        class="flash">
+    </div>
+
+
+    <!-- =================================================
+         FINAL
+    ================================================== -->
+
+    <div id="final">
+
+        <div class="finalRays"></div>
+
+        <div class="finalSmall">
+            AUJOURD'HUI, C'EST TA JOURNÉE !
+        </div>
+
+        <div class="finalTitle">
+            Joyeux<br>
+            Anniversaire
+        </div>
+
+        <div class="finalName">
+            SOKHNA BINTOU MBACKÉ
+        </div>
+
+        <div class="finalMessage">
+
+            Que cette nouvelle année t'apporte
+            <strong>du bonheur</strong>,
+            de belles surprises,
+            de la réussite et plein de
+            moments inoubliables. ✨
+
+            <br><br>
+
+            Profite pleinement de cette journée,
+            elle est entièrement à toi. ❤️
+
+        </div>
+
+        <div class="finalEmojis">
+            🎈 🎁 💖 ✨ 🎂 ✨ 💖 🎁 🎈
+        </div>
+
+        <button
+            class="replay"
+            onclick="location.reload()">
+            ↻ REVOIR
+        </button>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   ÉLÉMENTS
+========================================================= */
+
+const passwordScreen =
+    document.getElementById("passwordScreen");
+
+const password =
+    document.getElementById("password");
+
+const enter =
+    document.getElementById("enter");
+
+const error =
+    document.getElementById("error");
+
+const loading =
+    document.getElementById("loading");
+
+const experience =
+    document.getElementById("experience");
+
+const intro =
+    document.getElementById("intro");
+
+const gallery =
+    document.getElementById("gallery");
+
+const carousel =
+    document.getElementById("carousel");
+
+const final =
+    document.getElementById("final");
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+const prev =
+    document.getElementById("prev");
+
+const next =
+    document.getElementById("next");
+
+const dots =
+    document.getElementById("dots");
+
+const counter =
+    document.getElementById("counter");
+
+const flash =
+    document.getElementById("flash");
+
+
+/* =========================================================
+   MOT DE PASSE
+========================================================= */
+
+const PASSWORD = "mara";
+
+
+/* =========================================================
+   TES 26 MÉDIAS
+========================================================= */
+
+const medias = [
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/WhatsApp_Image_2026-08-16_at_02.25.01_1.jpg"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873461/WhatsApp_Video_2026-08-16_at_02.31.00.mp4"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873450/Photo_Collage_Maker_2025_09_24_12_01_26.png"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873445/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_01.11.48_b471640a.mp4"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873411/WhatsApp_Image_2026-08-16_at_02.25.02_1.jpg"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.02.jpg"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.01.jpg"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873410/WhatsApp_Image_2026-08-16_at_02.25.01_2.jpg"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873444/WhatsApp_Video_2026-08-16_at_02.25.03.mp4"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873442/WhatsApp_Video_2026-08-16_at_02.25.03_2.mp4"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873437/WhatsApp_Video_2026-08-16_at_02.25.01.mp4"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873437/WhatsApp_Video_2026-08-16_at_02.25.03_1.mp4"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873436/WhatsApp_Video_2026-08-16_at_02.25.02.mp4"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873424/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_00.54.47_d9ad782b.mp4"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873422/WhatsApp_Vid%C3%A9o_2025-09-23_%C3%A0_01.10.56_8bb80754.mp4"
+    },
+
+    {
+        type:"video",
+        src:"https://res.cloudinary.com/qx72zpuf/video/upload/q_auto/v1786873419/WhatsApp_Video_2026-08-16_at_02.25.00.mp4"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/WhatsApp_Image_2026-08-16_at_02.25.00.jpg"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873409/vlcsnap-2025-09-23-01h57m08s948.png"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873408/vlcsnap-2025-09-23-01h57m04s883.png"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873408/WhatsApp_Image_2026-08-16_at_02.25.00_1.jpg"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873405/vlcsnap-2025-09-23-01h57m03s122.png"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873405/vlcsnap-2025-09-23-01h47m18s000.png"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873404/vlcsnap-2025-09-23-01h47m24s110.png"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873404/vlcsnap-2025-09-23-01h47m16s104.png"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873401/vlcsnap-2025-09-23-01h47m14s958.png"
+    },
+
+    {
+        type:"image",
+        src:"https://res.cloudinary.com/qx72zpuf/image/upload/q_auto,f_auto/v1786873400/vlcsnap-2025-09-23-01h47m03s282.png"
+    }
+
+];
+
+
+/* =========================================================
+   VARIABLES CARROUSEL
+========================================================= */
+
+/*
+   26 médias
+   4 par page
+   7 pages
+
+   Page 7 :
+   2 derniers médias
+   + 2 cartes texte
+*/
+
+const perPage = 4;
+
+let page = 0;
+let position = 0;
+
+let autoTimer;
+
+
+/* =========================================================
+   MOT DE PASSE
+========================================================= */
+
+function checkPassword(){
+
+    if(
+        password.value.trim().toLowerCase()
+        !== PASSWORD
+    ){
+
+        error.textContent =
+            "Mot de passe incorrect.";
+
+        password.value = "";
+
+        password.animate(
+            [
+                {transform:"translateX(-8px)"},
+                {transform:"translateX(8px)"},
+                {transform:"translateX(-5px)"},
+                {transform:"translateX(0)"}
+            ],
+            {
+                duration:350
+            }
+        );
+
+        return;
+    }
+
+
+    error.textContent =
+        "Préparation de la surprise...";
+
+
+    music.play().catch(()=>{});
+
+
+    passwordScreen.classList.add("hide");
+
+    loading.classList.add("active");
+
+
+    setTimeout(()=>{
+
+        loading.classList.remove("active");
+
+        experience.classList.add("active");
+
+
+        setTimeout(()=>{
+
+            intro.classList.add("hide");
+
+            setTimeout(()=>{
+
+                gallery.classList.add("active");
+
+                buildPage();
+
+            },700);
+
+        },2500);
+
+    },2500);
+
+}
+
+enter.onclick =
+    checkPassword;
+
+password.addEventListener(
+    "keydown",
+    e=>{
+
+        if(e.key === "Enter"){
+            checkPassword();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MUSIQUE
+========================================================= */
+
+music.volume = .3;
+
+musicButton.onclick = ()=>{
+
+    if(music.paused){
+
+        music.play()
+            .then(()=>{
+                musicButton.textContent="🔊";
+            })
+            .catch(()=>{});
+
+    }else{
+
+        music.pause();
+
+        musicButton.textContent="🔇";
+
+    }
+
+};
+
+
+/* =========================================================
+   CRÉATION D'UN MÉDIA
+========================================================= */
+
+function createMedia(item){
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "media";
+
+
+    if(item.type === "image"){
+
+        const img =
+            document.createElement("img");
+
+        img.src =
+            item.src;
+
+        img.loading =
+            "eager";
+
+        img.alt =
+            "Souvenir";
+
+        card.appendChild(img);
+
+    }else{
+
+        const video =
+            document.createElement("video");
+
+        video.src =
+            item.src;
+
+        video.autoplay =
+            true;
+
+        video.muted =
+            true;
+
+        video.loop =
+            true;
+
+        video.playsInline =
+            true;
+
+        video.preload =
+            "auto";
+
+        video.controls =
+            false;
+
+        card.appendChild(video);
+
+    }
+
+    return card;
+}
+
+
+/* =========================================================
+   CARTES TEXTE
+========================================================= */
+
+function createTextCard(title,text,emoji){
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "textCard";
+
+    card.innerHTML = `
+
+        <div class="textContent">
+
+            <div class="emoji">
+                ${emoji}
+            </div>
+
+            <h2>
+                ${title}
+            </h2>
+
+            <p>
+                ${text}
+            </p>
+
+        </div>
+
+    `;
+
+    return card;
+}
+
+
+/* =========================================================
+   POSITIONS
+========================================================= */
+
+function setPosition(card, position){
+
+    card.classList.remove(
+        "center",
+        "left1",
+        "right1",
+        "left2",
+        "right2"
+    );
+
+
+    if(position === 0){
+
+        card.classList.add("center");
+
+    }else if(position === -1){
+
+        card.classList.add("left1");
+
+    }else if(position === 1){
+
+        card.classList.add("right1");
+
+    }else if(position <= -2){
+
+        card.classList.add("left2");
+
+    }else{
+
+        card.classList.add("right2");
+
+    }
+
+}
+
+
+/* =========================================================
+   CONSTRUIRE UNE PAGE
+========================================================= */
+
+function buildPage(){
+
+    clearTimeout(autoTimer);
+
+    carousel.innerHTML = "";
+
+    dots.innerHTML = "";
+
+
+    /*
+       PAGE NORMALE
+    */
+
+    if(page < 6){
+
+        const start =
+            page * 4;
+
+        const group =
+            medias.slice(
+                start,
+                start + 4
+            );
+
+
+        group.forEach(
+            (item,index)=>{
+
+                const card =
+                    createMedia(item);
+
+                carousel.appendChild(card);
+
+            }
+        );
+
+
+        /*
+           Position initiale :
+           premier au centre
+        */
+
+        position = 0;
+
+
+        updateCarousel();
+
+
+        /*
+           Petits points
+        */
+
+        group.forEach(
+            (_,index)=>{
+
+                const dot =
+                    document.createElement("span");
+
+                dot.className =
+                    "dot";
+
+                if(index === 0){
+                    dot.classList.add("active");
+                }
+
+                dots.appendChild(dot);
+
+            }
+        );
+
+
+        counter.textContent =
+            String(page+1).padStart(2,"0")
+            +
+            " / 07";
+
+
+        /*
+           Défilement rapide
+        */
+
+        autoTimer =
+            setTimeout(
+                nextMedia,
+                2800
+            );
+
+        return;
+    }
+
+
+    /* =====================================================
+       PAGE 7
+    ==================================================== */
+
+    const last =
+        medias.slice(24,26);
+
+
+    last.forEach(
+        item=>{
+
+            carousel.appendChild(
+                createMedia(item)
+            );
+
+        }
+    );
+
+
+    /*
+       Carte texte 1
+    */
+
+    carousel.appendChild(
+        createTextCard(
+            "Une nouvelle année ✨",
+
+            `
+            Que cette nouvelle année
+            soit remplie de
+            <strong>bonheur</strong>,
+            de réussite, de belles surprises
+            et de souvenirs inoubliables.
+            `,
+
+            "🎂"
+        )
+    );
+
+
+    /*
+       Carte texte 2
+    */
+
+    carousel.appendChild(
+        createTextCard(
+            "Pour toi ❤️",
+
+            `
+            Je te souhaite une très belle
+            journée d'anniversaire.
+            Profite de chaque instant
+            et garde toujours le sourire.
+            <br><br>
+            <strong>Joyeux anniversaire !</strong>
+            `,
+
+            "💖"
+        )
+    );
+
+
+    position = 0;
+
+    updateCarousel();
+
+
+    for(let i=0;i<4;i++){
+
+        const dot =
+            document.createElement("span");
+
+        dot.className =
+            "dot";
+
+        if(i === 0)
+            dot.classList.add("active");
+
+        dots.appendChild(dot);
+
+    }
+
+
+    counter.textContent =
+        "07 / 07";
+
+
+    autoTimer =
+        setTimeout(
+            showFinal,
+            6500
+        );
+
+}
+
+
+/* =========================================================
+   MISE À JOUR CARROUSEL
+========================================================= */
+
+function updateCarousel(){
+
+    const cards =
+        [...carousel.children];
+
+
+    cards.forEach(
+        (card,index)=>{
+
+            const relative =
+                index - position;
+
+
+            setPosition(
+                card,
+                relative
+            );
+
+
+            /*
+               Les cartes texte ont besoin
+               d'une légère adaptation
+            */
+
+            if(
+                card.classList.contains("textCard")
+            ){
+
+                card.style.setProperty(
+                    "--x",
+                    relative === 0
+                    ? "0px"
+                    : relative < 0
+                    ? "-31vw"
+                    : "31vw"
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+       Points
+    */
+
+    const points =
+        [...dots.children];
+
+    points.forEach(
+        (dot,index)=>{
+
+            dot.classList.toggle(
+                "active",
+                index === position
+            );
+
+        }
+    );
+
+
+    /*
+       Lire les vidéos visibles
+    */
+
+    cards.forEach(
+        (card,index)=>{
+
+            const video =
+                card.querySelector("video");
+
+            if(video){
+
+                if(
+                    Math.abs(
+                        index-position
+                    ) <= 1
+                ){
+
+                    video.play().catch(()=>{});
+
+                }else{
+
+                    video.pause();
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MÉDIA SUIVANT
+========================================================= */
+
+function nextMedia(){
+
+    const cards =
+        [...carousel.children];
+
+
+    if(
+        position <
+        cards.length - 1
+    ){
+
+        position++;
+
+        flash.classList.remove("active");
+
+        void flash.offsetWidth;
+
+        flash.classList.add("active");
+
+        updateCarousel();
+
+
+        clearTimeout(autoTimer);
+
+        autoTimer =
+            setTimeout(
+                nextMedia,
+                2800
+            );
+
+    }else{
+
+        /*
+           Fin de la page
+        */
+
+        setTimeout(
+            nextPage,
+            350
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MÉDIA PRÉCÉDENT
+========================================================= */
+
+function previousMedia(){
+
+    if(position > 0){
+
+        position--;
+
+        flash.classList.remove("active");
+
+        void flash.offsetWidth;
+
+        flash.classList.add("active");
+
+        updateCarousel();
+
+    }
+
+}
+
+
+/* =========================================================
+   PAGE SUIVANTE
+========================================================= */
+
+function nextPage(){
+
+    clearTimeout(autoTimer);
+
+    page++;
+
+    if(page >= 7){
+
+        showFinal();
+
+        return;
+
+    }
+
+    buildPage();
+
+}
+
+
+/* =========================================================
+   BOUTONS
+========================================================= */
+
+next.onclick =
+    nextMedia;
+
+prev.onclick =
+    previousMedia;
+
+
+/* =========================================================
+   CLIC SUR LES POINTS
+========================================================= */
+
+dots.addEventListener(
+    "click",
+    e=>{
+
+        if(
+            !e.target.classList.contains("dot")
+        ){
+            return;
+        }
+
+        const index =
+            [...dots.children]
+            .indexOf(e.target);
+
+        if(index < 0){
+            return;
+        }
+
+        position =
+            index;
+
+        updateCarousel();
+
+    }
+);
+
+
+/* =========================================================
+   PAGE FINALE
+========================================================= */
+
+function showFinal(){
+
+    clearTimeout(autoTimer);
+
+    gallery.classList.remove("active");
+
+    final.classList.add("active");
+
+    createConfetti();
+
+    createBalloons();
+
+}
+
+
+/* =========================================================
+   CONFETTIS
+========================================================= */
+
+function createConfetti(){
+
+    const colors = [
+        "#ff173d",
+        "#ff8e3d",
+        "#ffd166",
+        "#ff4d8b",
+        "#ffffff"
+    ];
+
+
+    for(let i=0;i<100;i++){
+
+        const c =
+            document.createElement("i");
+
+        c.style.position =
+            "absolute";
+
+        c.style.width =
+            (3+Math.random()*7)+"px";
+
+        c.style.height =
+            (6+Math.random()*12)+"px";
+
+        c.style.left =
+            Math.random()*100+"%";
+
+        c.style.top =
+            "-20px";
+
+        c.style.background =
+            colors[
+                Math.floor(
+                    Math.random()*colors.length
+                )
+            ];
+
+        c.style.zIndex =
+            "3";
+
+        c.style.animation =
+            `
+            confettiFall
+            ${2+Math.random()*4}s
+            linear
+            ${Math.random()*3}s
+            infinite
+            `;
+
+        final.appendChild(c);
+
+    }
+
+}
+
+
+/* =========================================================
+   BALLONS
+========================================================= */
+
+function createBalloons(){
+
+    const colors = [
+        "rgba(255,20,60,.75)",
+        "rgba(255,80,120,.7)",
+        "rgba(255,150,50,.7)",
+        "rgba(190,40,100,.65)"
+    ];
+
+
+    for(let i=0;i<16;i++){
+
+        const b =
+            document.createElement("div");
+
+        b.style.position =
+            "absolute";
+
+        b.style.width =
+            (30+Math.random()*35)+"px";
+
+        b.style.height =
+            (40+Math.random()*50)+"px";
+
+        b.style.borderRadius =
+            "50%";
+
+        b.style.left =
+            Math.random()*100+"%";
+
+        b.style.bottom =
+            "-100px";
+
+        b.style.background =
+            colors[
+                Math.floor(
+                    Math.random()*colors.length
+                )
+            ];
+
+        b.style.border =
+            "1px solid rgba(255,255,255,.4)";
+
+        b.style.boxShadow =
+            "0 0 20px rgba(255,30,70,.5)";
+
+        b.style.zIndex =
+            "3";
+
+        b.style.animation =
+            `
+            balloonUp
+            ${7+Math.random()*8}s
+            ease-in-out
+            ${Math.random()*4}s
+            infinite
+            `;
+
+        final.appendChild(b);
+
+    }
+
+}
+
+
+/* =========================================================
+   ANIMATIONS FINALES
+========================================================= */
+
+const extraStyle =
+document.createElement("style");
+
+extraStyle.textContent = `
+
+@keyframes confettiFall{
+
+    0%{
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    100%{
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+
+}
+
+@keyframes balloonUp{
+
+    0%{
+        transform:
+            translateY(0)
+            translateX(0);
+    }
+
+    50%{
+        transform:
+            translateY(-55vh)
+            translateX(45px);
+    }
+
+    100%{
+        transform:
+            translateY(-115vh)
+            translateX(-35px);
+
+        opacity:0;
+    }
+
+}
+
+`;
+
+document.head.appendChild(extraStyle);
+
+
+/* =========================================================
+   SWIPE MOBILE
+========================================================= */
+
+let touchStartX = 0;
+
+document.addEventListener(
+    "touchstart",
+    e=>{
+
+        touchStartX =
+            e.changedTouches[0].screenX;
+
+    },
+    {passive:true}
+);
+
+document.addEventListener(
+    "touchend",
+    e=>{
+
+        const touchEndX =
+            e.changedTouches[0].screenX;
+
+        const difference =
+            touchStartX - touchEndX;
+
+
+        if(difference > 50){
+
+            nextMedia();
+
+        }else if(difference < -50){
+
+            previousMedia();
+
+        }
+
+    },
+    {passive:true}
+);
+
+</script>
+
+</body>
+</html>
